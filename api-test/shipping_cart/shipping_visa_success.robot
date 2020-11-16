@@ -22,13 +22,13 @@ Search
     Should Be Equal    ${resp.json()['products'][1]['product_name']}   43 Piece dinner Set
 
 Product Detail
-    ${resp}    Get Request    alias=shopping    uri=/api/v1/product/2
+    ${resp}    Get Request    alias=shopping    uri=/api/v1/Product/2    headers=&{HEADERS}
     Request Should be successful    ${resp}
     Should Be Equal    ${resp.json()['product_name']}    43 Piece dinner Set
     Should Be Equal    ${resp.json()['product_image']}    /43_Piece_dinner_Set.png
     Should Be Equal    ${resp.json()['product_brand']}    CoolKidz
-    Should Be Equal As Integers   {resp.json()['product_price']}    12.95
-    Should Be Equal As Integers   {resp.json()['quantity']}    7
+    Should Be Equal As Numbers   ${resp.json()['product_price']}    12.95
+    Should Be Equal As Integers   ${resp.json()['quantity']}    10
 
 Submit Order
     ${data}=    To Json    ${DATA}
